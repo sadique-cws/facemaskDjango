@@ -1,0 +1,91 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facemask - connecting People</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <!-- navbar -->
+    <nav class="bg-blue-600 py-4 px-5 flex flex-1 justify-between items-center">
+        <h1 class="text-white font-bold">FaceMask</h1>
+
+        <form action="" method="post" class="flex justify-center items-center gap-2">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter username or Mobile" class="border border-slate-500 px-3 py-2 rounded">
+            <input type="password" placeholder="Enter password" class="border border-slate-500 px-3 py-2 rounded">
+            <input type="submit" class="bg-blue-800 hover:bg-blue-900 text-white px-3 py-2">
+        </form>
+    </nav>
+
+    <div class="bg-[url('{% static 'bg.webp' %}')] flex justify-between gap-10 p-10 h-[96vh] items-center bg-cover">
+        
+        <div class="w-8/12">
+            <div class="bg-white p-10 rounded-2xl shadow-xl">
+                <h1 class="text-6xl font-semibold mb-5">Welcome in FaceMask</h1>
+                <p class="text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores suscipit impedit, quasi aperiam quaerat officiis fugiat voluptas cum voluptatibus culpa labore nam excepturi rerum quas qui. Eligendi quos assumenda mollitia?</p>
+            </div>
+        </div>
+        <div class="w-4/12">
+            <div class="bg-white p-10">
+                <form action="{% url 'register' %}" method="post" class="flex flex-col gap-3"> 
+                    {%csrf_token%}
+                    <div class="flex gap-2">
+                        <div class="flex-1">
+                            <input type="text" name="fname" class="border border-slate-400 rounded p-2 w-full" placeholder="First Name">
+                        </div>
+                        <div class="flex-1">
+                            <input type="text" name="lname" class="border border-slate-400 rounded p-2 w-full" placeholder="last Name">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1">
+                            <input type="text" name="username" class="border border-slate-400 rounded p-2 w-full" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1">
+                            <input type="text" name="email" class="border border-slate-400 rounded p-2 w-full" placeholder="Email Address">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1">  
+                            <input type="text" name="contact" class="border border-slate-400 rounded p-2 w-full" placeholder="Contact no">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1">
+                            <input type="date"  name="dob" class="border border-slate-400 rounded p-2 w-full">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1">
+                            <select name="gender"  class="border border-slate-400 rounded p-2 w-full">
+                                <option value="" selected disabled>select Gender</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                                <option value="o">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="flex-1">
+                            <input type="password" name="password" class="border border-slate-400 rounded p-2 w-full" placeholder="New Password">
+                        </div>
+                        <div class="flex-1">
+                            <input type="password" name="cnf_password" class="border border-slate-400 rounded p-2 w-full" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <input type="submit" class="bg-green-700 text-white px-3 py-2 w-full rounded-lg shadow-md" value="Create an account">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facemask - connecting People</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- navbar -->
+    <nav class="bg-blue-600 py-2 px-5 flex flex-1 justify-between items-center">
+        <h1 class="text-white font-bold">FaceMask</h1>
+
+        <form action="" method="get" class="flex gap-0">
+            <input type="text" class="border px-3 py-1 outline-0 focus:outline-none rounded-l-md" size="70">
+            <input type="submit" class="bg-blue-800 hover:bg-blue-900 text-white px-3 py-1 rounded-r-md">
+        </form>
+
+        <div class="flex gap-2 capitalize">
+            <a href="" class="text-white hover:text-slate-200">Home</a>
+            <a href="" class="text-white hover:text-slate-200">{{ user.first_name }}</a>
+            <a href="" class="text-white hover:text-slate-200">Setting</a>
+            <a href="" class="text-white hover:text-slate-200">logout</a>
+        </div>
+       
+    </nav>
+
+    <div class="flex gap-5 py-5 px-36">
+        <div class="w-3/12">
+            <div class="bg-white border border-slate-300 w-full h-96">
+                <div class="flex flex-col">
+                    <div class="border bg-[url('https://picsum.photos/600')] w-full h-24"></div>
+                    <div class="flex flex-col gap-2 justify-center items-center">
+                        <div class="w-1/4 mx-auto bg-slate-500 rounded-lg -mt-12 h-auto border-4 border-white">
+                            <img src="https://social.webestica.com/assets/images/avatar/07.jpg" alt="">
+                        </div>
+                        <h2 class="font-bold text-slate-600 capitalize text-2xl ">{{ user.first_name }} {{ user.last_name }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-7/12">
+            <div class="bg-white border border-slate-300 w-full h-96"></div>
+        </div>
+        <div class="w-2/12">
+            <div class="bg-white border border-slate-300 w-full h-96"></div>
+        </div>
+    </div>
+
+
+</body>
+</html>

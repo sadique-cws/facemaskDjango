@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Account,Post
+from django.contrib.auth import authenticate, login as LoginFunction
 # Create your views here.
 
 def homepage(r):
@@ -10,6 +11,19 @@ def index(r):
     return render(r, "index.html")
 
 def login(r):
+    if r.method == "POST":
+        username = r.POST.get('email')
+        password = r.POST.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            LoginFunction(r, user)
+            return redirect(profile)
+        else:
+            return redirect(homepage) 
+
+        
+
     return render(r, "login.html")
 
 def register(r):
@@ -32,7 +46,9 @@ def register(r):
         a.dob = r.POST.get("dob")
         a.contact = r.POST.get('contact')
         a.save()
-        return redirect(homepage)
+        LoginFunction(r,u)
+        
+        return redirect(profile)
 
 
 def profile(r):

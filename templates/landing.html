@@ -14,10 +14,10 @@
     <nav class="bg-blue-600 py-4 px-5 flex flex-1 justify-between items-center">
         <h1 class="text-white font-bold">FaceMask</h1>
 
-        <form action="" method="post" class="flex justify-center items-center gap-2">
+        <form action="{%url 'login'%}" method="post" class="flex justify-center items-center gap-2">
             {% csrf_token %}
-            <input type="text" placeholder="Enter username or Mobile" class="border border-slate-500 px-3 py-2 rounded">
-            <input type="password" placeholder="Enter password" class="border border-slate-500 px-3 py-2 rounded">
+            <input type="text" name="email" placeholder="Enter username or Mobile" class="border border-slate-500 px-3 py-2 rounded">
+            <input type="password" name="password" placeholder="Enter password" class="border border-slate-500 px-3 py-2 rounded">
             <input type="submit" class="bg-blue-800 hover:bg-blue-900 text-white px-3 py-2">
         </form>
     </nav>

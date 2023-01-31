@@ -52,7 +52,18 @@ def register(r):
 
 
 def profile(r):
-    return render(r, "profile.html")
+    data = {}
+    data['posts'] = Post.objects.order_by("-id")
+    return render(r, "profile.html",data)
 
 def logout(r):
     pass 
+
+def insert_post(r):
+    if r.method == "POST":
+        p = Post()
+        user = User.objects.get(pk=r.user.id)
+        p.post_by = user 
+        p.caption = r.POST.get('caption')
+        p.save()
+        return redirect(profile)

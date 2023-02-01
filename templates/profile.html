@@ -23,7 +23,7 @@
             <a href="" class="text-white hover:text-slate-200">Home</a>
             <a href="" class="text-white hover:text-slate-200">{{ user.first_name }}</a>
             <a href="" class="text-white hover:text-slate-200">Setting</a>
-            <a href="" class="text-white hover:text-slate-200">logout</a>
+            <a href="{% url 'logout' %}" class="text-white hover:text-slate-200">logout</a>
         </div>
        
     </nav>
@@ -35,9 +35,18 @@
                     <div class="border bg-[url('https://picsum.photos/600')] w-full h-24"></div>
                     <div class="flex flex-col gap-2 justify-center items-center">
                         <div class="w-1/4 mx-auto bg-slate-500 rounded-lg -mt-12 h-auto border-4 border-white">
-                            <img src="https://social.webestica.com/assets/images/avatar/07.jpg" alt="">
+                            <img src="{{user.account.dp.url}}" alt="">
                         </div>
                         <h2 class="font-bold text-slate-600 capitalize text-2xl ">{{ user.first_name }} {{ user.last_name }}</h2>
+
+                        <form action="{% url 'uploadDp' %}" method="post" enctype="multipart/form-data">
+                            {%csrf_token %}
+                            <label for="upload" class="bg-green-600 text-white px-2 py-1 mt-3 rounded">
+                                <input type="file" name="dp" id="upload" class="hidden" onchange="this.form.submit();">
+                                <span>Upload Dp</span>
+                            </label>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -74,7 +83,5 @@
             <div class="bg-white border border-slate-300 w-full h-96"></div>
         </div>
     </div>
-
-
 </body>
 </html>

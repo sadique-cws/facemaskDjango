@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Account,Post
-from django.contrib.auth import authenticate, login as LoginFunction
+from django.contrib.auth import authenticate, login as LoginFunction, logout as LogoutFunction
+from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 def homepage(r):
@@ -51,13 +53,15 @@ def register(r):
         return redirect(profile)
 
 
+@login_required()
 def profile(r):
     data = {}
     data['posts'] = Post.objects.order_by("-id")
     return render(r, "profile.html",data)
 
 def logout(r):
-    pass 
+    LogoutFunction(r)
+    return redirect(homepage)
 
 def insert_post(r):
     if r.method == "POST":
@@ -66,4 +70,17 @@ def insert_post(r):
         p.post_by = user 
         p.caption = r.POST.get('caption')
         p.save()
+        return redirect(profile)
+
+
+
+def uploadDp(r):
+    if r.method == "POST":
+        user = User.objects.get(pk=r.user.id)
+        file = r.FILES['dp']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        upload_file_url = fs.url(filename)
+        user.dp = filename
+        user.save()
         return redirect(profile)
